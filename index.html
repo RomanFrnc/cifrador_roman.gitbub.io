@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <link rel="stylesheet" href="estilo.css">
+    <title>Cifrado de mensajes</title>
+</head>
+
+<body bgcolor="white">
+    
+    <p style="font-family:futura; line-height:50%; text-align:center; font-size:50px;"><b>Alura LATAM</b></p>
+    <hr style="font-family:futura; height:1px; color: black; background-color: black;" />
+       
+    <ul>
+        <li><a href="E:\CURSOS\PROGRAMADOR BASICO\CHALLANGE\index.html">Inicio</a></li>
+        <li><a href="E:\CURSOS\PROGRAMADOR BASICO\CHALLANGE\instructores.html">Instructores</a></li>
+    </ul>
+    <p style="font-family:futura ligth; line-height:100%; text-align:center; font-size:72px;color:#727557;">
+        Centro de mensajeria<br> Alura <br>
+        <span style="color: black; font-family:futura ligth; line-height: 0px; text-align:center; font-size:22px;">
+        Tus mensajes cifrados en esta era de las redes sociales</span>
+    </p>
+
+    <img src="E:\CURSOS\PROGRAMADOR BASICO\CHALLANGE\imagenes.gif" class="collage">
+    
+    <div class="division1">
+        <h2>Mensaje de origen</h2>
+        <textarea  class="cuadro1" id="mensajeOrigen" rows="10" cols="30" placeholder="Ingrese aqui su mensaje" style="font-size: 25px;"></textarea>
+        <br>
+        <button id="botonEncriptar">Encriptar</button>
+        <button id="botonDesencriptar">Desencriptar</button>
+        <button id="botonBorrar">Borrar</button>
+    </div><br>
+    <div class="division2">
+        <br>
+        <h2 class="destino">Mensaje de destino</h2>
+        <textarea readonly class="cuadro2" id="mensajeDestino" rows="10" cols="30" placeholder="Aqui aparecera su mensaje" style="font-size: 25px;"></textarea>
+        <br>
+        <button id="botonCopiar">Copiar</button>
+        <button id="botonBorrar1">Borrar</button> 
+    </div>
+
+    <div >
+        <img src="E:\CURSOS\PROGRAMADOR BASICO\CHALLANGE\foto1.jpg" class="imagenFondo">
+    </div>
+    <br>
+    <p style="font-family:futura; line-height:70%; text-align:center; font-size:25px;"><b>Alura LATAM</b></p>
+    <br>
+    <p style="font-family:futura; line-height:70%; text-align:center; font-size:13px;">franco_roman@outlook.com</p>
+    <br>
+    <br>
+    <p style="font-family:futura; line-height:70%; text-align:center; font-size:13px;">©2023 por Alura LATAM. Creado por Roman</p>
+    
+<script>
+    
+    var cuadroTexto1=document.getElementById("mensajeOrigen");
+    var cuadroTexto2=document.getElementById("mensajeDestino");
+    var vocalesBuscar=["a","e","i","o","u"];
+    var palabrasSustitucion=["ai","enter","imes","ober","ufat"];
+    var errores=["ERROR 001NUM: Texto tiene numeros", "ERROR 002MAYUS: Texto ingresado tiene mayusculas","ERROR 003TIL: Texto ingresado tiene tildes"];
+    
+    var vocalesEncontradas="";
+    var separarVocales="";
+    var unirMensaje="";
+    var portapapel="";
+   
+    function declararVariable(){
+        var cuadroTexto1=document.getElementById("mensajeOrigen");
+        var cuadroTexto2=document.getElementById("mensajeDestino");
+        
+        var mensaje=cuadroTexto1.value;
+        
+        return mensaje;
+    }
+        
+    function portaPapel(){
+        
+        portapapel=navigator.clipboard.writeText(cuadroTexto2.value);
+        navigator.clipboard.readText().then(portapapel => {
+        cuadroTexto1.value = portapapel;
+        });
+        cuadroTexto2.value="";
+    }
+        
+    function contarVocales(){
+        var mensaje=declararVariable();
+        for(var i=0; i<vocalesBuscar.length; i++){
+            if (mensaje.includes(vocalesBuscar[i])){
+                vocalesEncontradas = (vocalesEncontradas + vocalesBuscar[i]);
+            }
+        }   
+    }    
+
+    function codificar(mensaje){
+        
+        var mensaje=mensaje;
+        var separarVocales=vocalesEncontradas.split("");
+        var mensajeDividido=mensaje.split("");
+        
+        for(var i=0;i<separarVocales.length;i++){
+            for(var j=0;j<vocalesBuscar.length;j++){
+                if (separarVocales[i]==vocalesBuscar[j]){
+                    reemplazar(mensaje,separarVocales[i],palabrasSustitucion[j],mensajeDividido);   
+                }
+            }
+        }
+        unirEncriptado= mensajeDividido.join("");
+        imprimir(unirEncriptado);
+    }
+
+    function desencriptar(){
+        mensajeDesencriptado=declararVariable();
+        for(var i=0;i<palabrasSustitucion.length;i++){
+            mensajeDesencriptado=mensajeDesencriptado.replaceAll(palabrasSustitucion[i], vocalesBuscar[i]);   
+        }
+
+        imprimir(mensajeDesencriptado);
+    }
+
+    function reemplazar(mensaje,vocal,reemplazo,mensajeDividido){
+        var mensaje=mensaje;
+        for(var i=0;i<mensaje.length;i++){
+            if( mensajeDividido[i]==vocal){
+                mensajeDividido[i]=reemplazo;
+            }
+        }
+    }
+
+    function imprimir(mensajeFinal){
+        
+        cuadroTexto2.value=mensajeFinal;
+        cuadroTexto1.value="";
+        reiniciarVariables();
+    }   
+
+    function reiniciarVariables(){
+        vocalesEncontradas="";
+        separarVocales="";
+        unirMensaje="";
+        mensajeDesencriptado="";
+        
+    }
+
+    function verificarNumero(){
+        var mensaje=declararVariable();
+        if (mensaje.match(/[0-9]/g)) {
+            alert(errores[0]+", corrija e intente nuevamente");
+            limpiarCuadros();
+        } else {
+            return false;
+        }
+    }
+
+    function verificarMayusculas(){
+        var mensaje=declararVariable();
+        if (mensaje.match(/[A-Z]/g)) {
+            alert(errores[1]+", cambielo e intente nuevamente");
+            limpiarCuadros();
+        } else {
+            return false;
+        }
+    }
+
+    function verificarTilde(){
+        var mensaje=declararVariable();
+        if (mensaje.match(/[áéíóúÁÉÍÓÚ´]/g)){
+            alert(errores[2]+", cambielo e intente nuevamente");
+            limpiarCuadros();
+        } else {
+            return false;
+        }
+    }
+
+    function verificarVocales(){
+        var mensaje=declararVariable();
+        if(mensaje.match(/[aeiou]/g)){
+            return ("true");
+        } else {
+            return("false");
+        }
+    }
+    
+    function limpiarCuadros(){
+        cuadroTexto1.value="";
+        cuadroTexto2.value="";
+    }
+
+    function encriptar(){
+   
+        var mensaje=declararVariable();
+        var mensajeDividido=mensaje.split("");
+        var mensajeDesencriptado=mensaje;
+
+        contarVocales();
+
+        if (verificarVocales()===false){
+
+            alert(mensaje +"<br>Su mensaje no tiene vocales");
+            limpiarCuadros();
+        }
+
+        if(verificarNumero()===false){
+            
+            if(verificarMayusculas()===false){
+
+                if(verificarTilde()===false){
+
+                    codificar(mensaje);
+                } else{
+                    verificarTilde();
+                }      
+            } else{
+                verificarMayusculas();
+            }
+        } else{
+            verificarNumero();  
+        }
+    }
+
+    var botonEncriptar=document.getElementById("botonEncriptar");
+    var botonDesencriptar = document.getElementById("botonDesencriptar");
+    var botonCopiar=document.getElementById("botonCopiar");
+    var botonBorrar=document.getElementById("botonBorrar");
+    var botonBorrar1=document.getElementById("botonBorrar1");
+
+    botonCopiar.onclick=portaPapel;
+    botonDesencriptar.onclick=desencriptar;
+    botonEncriptar.onclick=encriptar;
+    botonBorrar.onclick=limpiarCuadros;
+    botonBorrar1.onclick=limpiarCuadros;
+
+</script>
+
+</body>
+
+</html>

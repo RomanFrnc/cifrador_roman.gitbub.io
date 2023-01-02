@@ -1,0 +1,171 @@
+button {
+  background-color: rgb(245, 147, 19);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 2px;
+  cursor: pointer;
+  height: 60px;
+  width: 200px;
+  text-align: center;
+  margin-right: 6.5%;
+}
+button:hover{
+  background-color:#4d4d4d;
+}
+
+h2 {
+  text-align: center;
+  font-size: 50px;
+  line-height: 1%;
+}
+
+.destino{
+  text-align:left;
+  font-size: 50px;
+  line-height: 1%;
+  padding-left: 100px;
+}
+
+.cuadro1 {
+  font-family: arial;
+  color: black;
+  background-color: beige;
+  width: 70%;
+  font-size: 90px;
+  padding: 40px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px; 
+}
+
+.cuadro2 {
+  font-family: arial;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  font-size: 90px;
+  padding: 40px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px; 
+}
+
+.collage {
+    width: 100%;
+    height: 450px;
+}
+
+li {
+  text-align: left;
+  display:inline-block;
+  color:white;
+  margin-right:1px;
+ }
+
+ul {
+  width:100%;
+  background:white;
+  height:1px;
+  text-align:center;
+}
+
+a {
+  width:100px;
+  text-decoration:none;
+  text-align:center;
+  color:black;
+  padding:3px 5px;
+  display:block;
+}
+
+a:hover {
+  background-color:#b9b9af;
+}
+
+.division1{
+  color: #ffffff;
+  padding-left: 100px;
+  padding-right: 0px;
+  background-color: #727557;
+  margin: 0px;
+  width: 100%;
+  height: 600px;
+  display: inline-block;
+}
+
+.division2{
+  color: #000000;
+  padding-left: 100px;
+  padding-right: 0px;
+  background-color: #CFC5C1;
+  margin: 0px;
+  width: 100%;
+  height: 600px;
+  display: inline-block;
+}
+
+.imagenFondo{
+  position:absolute;
+  top:1700px;
+  left:775px;
+  border:none;
+  width: 45%;
+  height: 45%; 
+}
+
+.instrucctor1{
+  position: relative;
+  color: #000000;
+  top: 0px;
+  left: 280px;
+  background-color: #CFC5C1;
+  margin: 0px;
+  width: 300px;
+  height: 500px;
+  display: inline-block;
+}
+
+.instrucctor2{
+  position: relative;
+  color: #000000;
+  top: 0px;
+  left: 370px;
+  background-color: #CFC5C1;
+  margin: 0px;
+  width: 300px;
+  height: 500px;
+  display: inline-block;
+}
+
+.jeanmarie{
+  position: absolute;
+  top:0px;
+  left:0px;
+  border:none;
+  width: 200px;
+  height: 280px; 
+}
+
+.genesis{
+  position: absolute;
+  top:0px;
+  left:0px;
+  border:none;
+  width: 200px;
+  height: 280px; 
+}
+
+.christian{
+  position: absolute;
+  top:0px;
+  left:0px;
+  border:none;
+  width: 200px;
+  height: 280px; 
+}
